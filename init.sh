@@ -57,6 +57,23 @@ yum -y install vim git tmux
 elif [ "$dist" = 'Ubuntu' ];then
 	echo "うぶんつ！"
 	#Script for Ubuntu
+	
+cat <<EOF > /etc/network/interfaces
+
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+auto eth0
+iface eth0 inet static
+address ${ipaddress}
+netmask 255.255.255.0
+gateway 192.168.11.1
+dns-nameservers 192.168.11.2
+
+
+EOF
+
 
  fi	
 
